@@ -129,13 +129,17 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICS_DIR = BASE_DIR / "static"
 
+
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+postgresql_psycopg2CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
 LOGIN_REDIRECT_URL = 'home'
