@@ -18,6 +18,12 @@
 </head>
 <body>
     {% include 'navbar.html' %}
+    <div class="container">
+      {% if messages %} {% for message in messages %}
+      <div class="alter alter-{{message.tags}}">{{message}}</div>
+      {% endfor %} {% endif %} 
+    </div>
+
     <div class="container dsplay-content">
         {% block content %}{% endblock %}
     </div>
