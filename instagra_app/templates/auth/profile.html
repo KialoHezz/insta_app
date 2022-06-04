@@ -1,8 +1,23 @@
-{% extends 'base.html' %}
-{% load crispy_forms_tags %}
-{% block content %}
-<div class="container">
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% block content %}
+
+<form method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  <fieldset class="form-group">
+    <legend class="border-bottom mb-4">Profile Info</legend>
+    {{ u_form|crispy }}
+    <!-- User form -->
+    {{ p_form|crispy }}
+    <!-- Profile form -->
+  </fieldset>
+  <div class="form-group">
+    <button class="btn btn-outline-info" type="submit">Update</button>
+  </div>
+</form>
+
+<div class="container bg-primary mt-2">
     <p>{{user.username}}</p>
     <p>{{user.email}}</p>
+    <p>{{user.bio}}</p>
+    <img src="{{user.photo.url}}" alt="" >
 </div>
 {% endblock %}
