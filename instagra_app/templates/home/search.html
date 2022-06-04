@@ -1,0 +1,15 @@
+{% extends "base.html" %} 
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    {% if imgs  %}
+    <h2>found {{search_searchies |length}} of searched term {{messages}}</h2>
+    {% else %}
+    <h2> {{messages}}</h2>
+    {% endif %} {%if imgs %} {% for searchs in imgs %} {{searchs.name}}
+    {%endfor%} {%endif%}
+  </div>
+</div>
+
+{% endblock %}

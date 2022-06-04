@@ -4,8 +4,8 @@
   {% csrf_token %}
   <fieldset class="form-group">
     <legend class="border-bottom mb-4">Profile Info</legend>
-    {{ u_form|crispy }}
-    <!-- User form -->
+
+   
     {{ p_form|crispy }}
     <!-- Profile form -->
   </fieldset>
@@ -17,7 +17,7 @@
 <div class="container bg-primary mt-2">
     <p>{{user.username}}</p>
     <p>{{user.email}}</p>
-    <p>{{user.bio}}</p>
-    <img src="{{user.photo.url}}" alt="" >
+    <p>{{form.bio}}</p>
+    <img src="{{form.photo.url}}" alt="" >
 </div>
 {% endblock %}

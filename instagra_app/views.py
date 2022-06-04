@@ -4,8 +4,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect, render
 from django.dispatch import receiver
 
-from .forms import UserRegisterForm,UserUpdateProfileForm,UpdateProfileForm
-from .models import UserProfile
+from .forms import UserRegisterForm,UpdateProfileForm
+from .models import UserProfile,ImageIn
 from django.db.models.signals import post_save #Import a post_save signal when a user is created
 from django.contrib.auth.models import User # Import the built-in User model, which is a sender
 from django.dispatch import receiver
@@ -40,11 +40,10 @@ def register(request):
 @login_required
 def profile(request,**kwargs):
     if request.method == 'POST':
-        u_form = UserUpdateProfileForm(request.POST, instance=request.user)
+        
         p_form = UpdateProfileForm(request.POST,request.FILES, instance=request.user)
 
-        if u_form.is_valid() and p_form.is_valid():
-            u_form.save()
+        if p_form.is_valid():
             p_form.save()
 
     
@@ -54,14 +53,14 @@ def profile(request,**kwargs):
             return redirect('profile')
 
     else:
-        u_form = UserUpdateProfileForm(instance=request.user)
+       
         p_form = UpdateProfileForm(instance=request.user)
 
-    
+    form = UpdateProfileForm()
 
     ctx = {
-        'u_form': u_form,
         'p_form': p_form,
+        'form': form,
     }
     
     return render(request, 'auth/profile.html',ctx)
@@ -70,3 +69,18 @@ def profile(request,**kwargs):
 # def save_profile(sender, instance, **kwargs):
 #     instance.UserProfile.save()
 
+def search_results(request):
+    if 'search' in request.GET and request.GET['search']:
+        dat = ''
+
+        search_term = request.GET.get('search')
+
+        search_searchies = ImageIn(search_term)
+
+
+        messages = f'{search_term}'
+
+    else:
+        messages = "You have't searched for any term"
+
+    return render(request, 'home/search.html', {'messages':messages})
