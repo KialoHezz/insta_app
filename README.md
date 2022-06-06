@@ -10,7 +10,8 @@ These instructions will get you a copy of the project up and running on your loc
 - Inside the project folder create Django environment and activate (python3 -m venv <name-of-enviroment>) and source <name-of-environment>/bin/activate
 - Either start your own project or use this project by:
         git clone https://github.com/KialoHezz/insta_app.git
-        To run python3 manage.py runserver or ./manage.py
+
+        - To run python3 manage.py runserver or ./manage.py
 
     ####  Another way:
         - Inside your project folder pip install django
